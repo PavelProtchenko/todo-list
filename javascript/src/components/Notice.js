@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Notice = ({notice}) =>
-  <div className="tile" key={notice.id}>
-    <h4>{notice.title}</h4>
-    <p>{notice.body}</p>
-  </div>
+class Notice extends Component {
+  handleClick = () => { this.props.onClick(this.props.notice.id) }
+
+  render() {
+    return(
+      <div className="tile">
+        <h4 onClick={this.handleClick}>{this.props.notice.title}</h4>
+        <p onClick={this.handleClick}>{this.props.notice.body}</p>
+      </div>
+    )
+  }
+}
 
 export default Notice

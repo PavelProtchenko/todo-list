@@ -38,6 +38,12 @@ class NoticeContainer extends Component {
     this.setState({notices: notices, notification: 'All changes are saved'})
   }
 
+  resetNotification = () => {this.setState({notification: ''})}
+
+  enableEditing = (id) => {
+    this.setState({editingNoticeId: id}, () => { this.title.focus() })
+  }
+
   render() {
     return(
       <div>
@@ -51,9 +57,11 @@ class NoticeContainer extends Component {
         </div>
         {this.state.notices.map((notice) => {
           if(this.state.editingNoticeId === notice.id) {
-            return(<NoticeForm notice={notice} key={notice.id} updateNotice={this.updateNotice} />)
+            return(<NoticeForm notice={notice} key={notice.id} updateNotice={this.updateNotice}
+                    titleRef= {input => this.title = input}
+                    resetNotification={this.resetNotification} />)
           } else {
-            return(<Notice notice={notice} key={notice.id} />)
+            return(<Notice notice={notice} key={notice.id} onClick={this.enableEditing} />)
           }
         })}
       </div>
