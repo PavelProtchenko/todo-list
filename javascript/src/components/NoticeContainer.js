@@ -9,7 +9,8 @@ class NoticeContainer extends Component {
     super(props)
     this.state = {
     notices: [],
-    editingNoticeId: null
+    editingNoticeId: null,
+    notification: ''
     }
   } 
   componentDidMount() {
@@ -31,6 +32,12 @@ class NoticeContainer extends Component {
     .catch(error => console.log(error)) 
   }
 
+  updateNotice = (notice) => {
+    const noticeIndex = this.state.notices.findIndex(x => x.id === notice.id)
+    const notices = update(this.state.notices, {[noticeIndex]: { $set: notice }})
+    this.setState({notices: notices, notification: 'All changes are saved'})
+  }
+
   render() {
     return(
       <div>
@@ -38,10 +45,13 @@ class NoticeContainer extends Component {
           <button className="new-notice-btn" onClick={this.addNewNotice}>
             New notice
           </button>
+          <span className="notification">
+            {this.state.notification}
+          </span>
         </div>
         {this.state.notices.map((notice) => {
           if(this.state.editingNoticeId === notice.id) {
-            return(<NoticeForm notice={notice} key={notice.id} />)
+            return(<NoticeForm notice={notice} key={notice.id} updateNotice={this.updateNotice} />)
           } else {
             return(<Notice notice={notice} key={notice.id} />)
           }

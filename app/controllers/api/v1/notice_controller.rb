@@ -9,6 +9,12 @@ module Api::V1
       @notice = Notice.create(notice_params)
       render json: @notice
     end
+    
+    def update
+      @notice = Notice.find(params[:id])
+      @notice.update_attributes(notice_params)
+      render json: @notice
+    end
 
     private
 
