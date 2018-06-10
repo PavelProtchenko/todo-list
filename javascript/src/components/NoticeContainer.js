@@ -12,16 +12,23 @@ class NoticeContainer extends Component {
     axios.get('http://localhost:3001/api/v1/notice.json')
     .then(response => {
       console.log(response)
-      this.setState({notice: response.data})
+      this.setState({notices: response.data})
     })
     .catch(error => console.log(error))
   } 
   render() {
     return(
       <div>
-        Notices
+        {this.state.notices.map((notice) => {
+          return(
+            <div className="tile" key={notice.id}>
+              <h4>{notice.title}</h4>
+              <p>{notice.body}</p>
+            </div>
+          )
+        })}
       </div>
-    )
+    );
   }
 }
 
