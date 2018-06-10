@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Notice from './Notice';
 
 class NoticeContainer extends Component {
   constructor(props) {
@@ -19,12 +20,14 @@ class NoticeContainer extends Component {
   render() {
     return(
       <div>
+        <div>
+          <button className="new-notice-btn">
+            New notice
+          </button>
+        </div>
         {this.state.notices.map((notice) => {
           return(
-            <div className="tile" key={notice.id}>
-              <h4>{notice.title}</h4>
-              <p>{notice.body}</p>
-            </div>
+            <Notice notice={notice} key={notice.id} />
           )
         })}
       </div>
