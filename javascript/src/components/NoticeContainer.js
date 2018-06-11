@@ -38,6 +38,17 @@ class NoticeContainer extends Component {
     this.setState({notices: notices, notification: 'All changes are saved'})
   }
 
+  deleteNotice = (id) => {
+    axios.delete(`http://localhost:3001/api/v1/notice/${id}`)
+    .then(response => {
+      console.log(response)
+      const noticeIndex = this.state.notices.findIndex(x => x.id === id)
+      const notices = update(this.state.notices, { $splice: [[noticeIndex, 1]] })
+      this.setState({notices: notices})
+    })
+    .catch(error => console.log(error))
+  }
+
   resetNotification = () => {this.setState({notification: ''})}
 
   enableEditing = (id) => {
@@ -61,7 +72,8 @@ class NoticeContainer extends Component {
                     titleRef= {input => this.title = input}
                     resetNotification={this.resetNotification} />)
           } else {
-            return(<Notice notice={notice} key={notice.id} onClick={this.enableEditing} />)
+            return(<Notice notice={notice} key={notice.id} onClick={this.enableEditing}
+                    onDelete={this.deleteNotice} />)
           }
         })}
       </div>

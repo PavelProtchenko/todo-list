@@ -16,6 +16,15 @@ module Api::V1
       render json: @notice
     end
 
+    def destroy
+      @notice = Notice.find(params[:id])
+      if @notice.destroy
+        head :no_content, status: :ok
+      else
+        render json: @notice.errors, status: :unprocessable_entity
+      end
+    end
+
     private
 
     def notice_params
