@@ -5,7 +5,13 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version 2.3.1
+
+* Frontend is React-based only
+
+* Backend is Ruby on Rails 5.2
+
+* This is just a web application built up to learn React features and SPA way of creation
 
 * System dependencies
 
