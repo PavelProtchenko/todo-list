@@ -20,9 +20,10 @@
 }
 
 .tile {
-  height: 150px;
-  width: 150px;
+  height: 155px;
+  width: 155px;
   margin: 10px;
+  overflow: hidden;
   background-color: #df4 ;
   float: left;
   font-size: 11px;
@@ -44,6 +45,8 @@
   border: 0;
   background-color: none;
   outline: none;
+  margin-right: 5px;
+  margin-left: 5px;
   margin-top: 10px;
   width: 140px;
   font-size: 11px;

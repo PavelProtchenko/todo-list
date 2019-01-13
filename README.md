@@ -1,9 +1,6 @@
-# README
+### To do list app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+# Dependencies
 
 * Ruby version 2.3.1
 
@@ -13,18 +10,20 @@ Things you may want to cover:
 
 * This is just a web application built up to learn React features and SPA way of creation
 
-* System dependencies
+* Configuration for running application
 
-* Configuration
+First of all you have to install rbenv or rvm for
+managing ruby versions.
 
-* Database creation
+Then install bundler for pull dependencies
 
-* Database initialization
+```gem install bundler
+```
 
-* How to run the test suite
+The next step is database creation and run migrations
 
-* Services (job queues, cache servers, search engines, etc.)
+```rake db:create
+```
+```rake db:migrate
+```
 
-* Deployment instructions
-
-* ...
